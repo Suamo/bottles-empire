@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: dataflow-mysql
+    volumes:
+      - /home/docker/mysql-data:/var/lib/mysql
+    environment:
+#      MYSQL_DATABASE: testdb
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+
+  rabbitmq:
+    image: rabbitmq:3.8.2-management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    expose:
+      - 5672
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - 6379:6379
