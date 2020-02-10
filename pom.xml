@@ -21,7 +21,8 @@
 
     <modules>
         <module>config-server</module>
-        <module>bottles-shop</module>
+        <module>eureka-server</module>
+        <module>services</module>
     </modules>
 
     <dependencies>
