@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController // allows POST http://localhost:8081/actuator/refresh
 public class BottlesShopController {
 
-    @Value("${my.test.property}")
+    @Value("${eureka.instance.instance-id}")
     private String myTestProperty;
 
     @GetMapping("/")
