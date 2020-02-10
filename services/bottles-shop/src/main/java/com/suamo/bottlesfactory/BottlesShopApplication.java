@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BottlesShopApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BottlesFactoryApplication.class, args);
+        SpringApplication.run(BottlesShopApplication.class, args);
     }
 
 }
