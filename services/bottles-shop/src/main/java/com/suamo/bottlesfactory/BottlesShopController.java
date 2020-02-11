@@ -22,7 +22,7 @@ public class BottlesShopController {
         if (counter.getBottlesCount() < count) {
             return "There are not enouth botles";
         }
-        counter.substractBottles(count);
+        counter.subtractBottles(count);
         return "Congrats! You have bought " + count + " bottles!";
     }
 

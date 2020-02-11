@@ -18,7 +18,7 @@ public class Counter {
         this.bottlesCount += count;
     }
 
-    public void substractBottles(int count) {
+    public void subtractBottles(int count) {
         this.bottlesCount -= count;
     }
 }
