@@ -7,7 +7,7 @@ services:
     volumes:
       - /home/docker/mysql-data:/var/lib/mysql
     environment:
-#      MYSQL_DATABASE: testdb
+      MYSQL_DATABASE: testdb
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: 1234
     ports:

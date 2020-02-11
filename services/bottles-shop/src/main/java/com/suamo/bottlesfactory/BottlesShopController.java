@@ -1,20 +1,29 @@
 package com.suamo.bottlesfactory;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RefreshScope
-@RestController // allows POST http://localhost:8081/actuator/refresh
+@RestController
 public class BottlesShopController {
 
-    @Value("${my.test.property}")
-    private String myTestProperty;
+    @Autowired
+    private Counter counter;
 
-    @GetMapping("/")
-    public String test() {
-        return myTestProperty;
+    @GetMapping
+    public String list() {
+        return "Bottles available: " + counter.getBottlesCount();
+    }
+
+    @PostMapping("buy")
+    public String buy(@RequestParam int count) {
+        if (counter.getBottlesCount() < count) {
+            return "There are not enouth botles";
+        }
+        counter.substractBottles(count);
+        return "Congrats! You have bought " + count + " bottles!";
     }
 
 }
