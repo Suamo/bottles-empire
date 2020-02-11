@@ -3,11 +3,9 @@ version: '3'
 services:
   mysql:
     image: mysql:latest
-    container_name: dataflow-mysql
-    volumes:
-      - /home/docker/mysql-data:/var/lib/mysql
+    container_name: mysql
     environment:
-      MYSQL_DATABASE: testdb
+      MYSQL_DATABASE: tasklogs
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: 1234
     ports:

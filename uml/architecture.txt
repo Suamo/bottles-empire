@@ -1,16 +1,16 @@
 @startuml
-skinparam componentStyle uml2
+left to right direction
 
 !include <cloudinsight/rabbitmq>
 !include <cloudinsight/docker>
 !include <cloudinsight/mysql>
-!include <cloudinsight/redis>
+'!include <cloudinsight/redis>
 
 node "<$docker>\ndocker" {
-    artifact "<$redis>\nredis" as redis
+'     artifact "<$redis>\nredis" as redis
     database "<$mysql>\nDB" as DB
     artifact "<$rabbitmq>\nMOM" as MOM {
-        queue queue
+        queue topic
     }
 }
 
@@ -27,9 +27,9 @@ interface HTTP as http2
 http1 --> BottlesShop
 http2 --> PlasticWarehouse
 GretaCommittee --> DB
-PlasticWarehouse --> GretaCommittee
+BottlesFactory ..> topic
 PlasticWarehouse --> BottlesFactory
-BottlesFactory --> queue
-queue --> BottlesShop
+topic ..> BottlesShop
+topic ..> GretaCommittee
 
 @enduml

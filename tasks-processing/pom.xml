@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>functions</artifactId>
+    <artifactId>tasks-processing</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
@@ -31,6 +31,8 @@
 
     <modules>
         <module>greta-committee</module>
+        <module>tasks-launcher</module>
+        <module>cloud-task-intake</module>
     </modules>
 
 </project>
