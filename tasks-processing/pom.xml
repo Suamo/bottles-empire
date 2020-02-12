@@ -30,9 +30,9 @@
     </dependencies>
 
     <modules>
+        <module>greta-spy</module>
+        <module>greta-committee-coordinator</module>
         <module>greta-committee</module>
-        <module>tasks-launcher</module>
-        <module>cloud-task-intake</module>
     </modules>
 
 </project>

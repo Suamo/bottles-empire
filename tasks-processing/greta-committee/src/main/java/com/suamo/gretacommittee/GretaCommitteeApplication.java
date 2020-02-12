@@ -14,25 +14,23 @@ public class GretaCommitteeApplication {
         SpringApplication.run(GretaCommitteeApplication.class, args);
     }
 
-
     @Bean
-    public PlasticAnalysisTask tollProcessingTask() {
-        return new PlasticAnalysisTask();
+    public TollProcessingTask tollProcessingTask() {
+        return new TollProcessingTask();
     }
 
-    public static class PlasticAnalysisTask implements CommandLineRunner {
+    public static class TollProcessingTask implements CommandLineRunner {
 
         @Override
         public void run(String... args) {
             if (null != args) {
                 System.out.println("Parameter length is " + args.length);
-
-                String name = args[0];
-
-                System.out.println("Hello " + name);
+                System.out.println("OMG!");
+                for (String arg : args) {
+                    System.out.println(arg);
+                }
             }
         }
 
     }
-
 }

@@ -8,7 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>tasks-launcher</artifactId>
+	<artifactId>greta-committee-coordinator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<dependencies>

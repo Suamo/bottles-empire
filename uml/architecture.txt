@@ -4,19 +4,20 @@ left to right direction
 !include <cloudinsight/rabbitmq>
 !include <cloudinsight/docker>
 !include <cloudinsight/mysql>
-'!include <cloudinsight/redis>
+'//  !include <cloudinsight/redis>
 
-node "<$docker>\ndocker" {
-'     artifact "<$redis>\nredis" as redis
-    database "<$mysql>\nDB" as DB
-    artifact "<$rabbitmq>\nMOM" as MOM {
-        queue topic
-    }
+'//     artifact "<$redis>\nredis" as redis
+database "<$mysql>\ntasklogs" as DB
+artifact "<$rabbitmq>" as MOM {
+    queue "bulletin-board" as queue1
+    queue "tasks-pool" as queue2
 }
 
 frame services {
     artifact BottlesShop <<Service>>
     artifact PlasticWarehouse <<Service>>
+    artifact GretaSpy <<Service>>
+    artifact GretaCommitteeCoordinator <<Service>>
     artifact GretaCommittee <<Task>>
     artifact BottlesFactory <<Service>>
 }
@@ -26,10 +27,13 @@ interface HTTP as http2
 
 http1 --> BottlesShop
 http2 --> PlasticWarehouse
-GretaCommittee --> DB
-BottlesFactory ..> topic
+GretaCommittee -up-> DB
+BottlesFactory ..> queue1
 PlasticWarehouse --> BottlesFactory
-topic ..> BottlesShop
-topic ..> GretaCommittee
+queue1 .> BottlesShop
+queue1 ..> GretaSpy
+GretaSpy ..> queue2
+queue2 ..> GretaCommitteeCoordinator
+GretaCommitteeCoordinator -> GretaCommittee
 
 @enduml

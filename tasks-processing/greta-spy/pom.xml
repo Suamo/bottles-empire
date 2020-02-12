@@ -8,7 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>cloud-task-intake</artifactId>
+	<artifactId>greta-spy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cloud-task-intake</name>
 
