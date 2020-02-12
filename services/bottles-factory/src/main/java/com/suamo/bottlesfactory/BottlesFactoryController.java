@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.integration.support.MessageBuilder;
-import org.springframework.messaging.Message;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +27,7 @@ public class BottlesFactoryController {
         int newBottles = totalAmountOfPlastic / BOTTLE_PLASTIC_COST;
         if (newBottles > 0) {
             System.out.println("Processing " + (BOTTLE_PLASTIC_COST * newBottles) + " plastic for " + newBottles + " bottles.");
-            source.output().send(MessageBuilder.withPayload(newBottles).build());
+            source.output().send(MessageBuilder.withPayload(newBottles).setHeader("bottlesIncome", newBottles).build());
             totalAmountOfPlastic = totalAmountOfPlastic % BOTTLE_PLASTIC_COST;
             return "Send plastic to bottles factory. Excepted bottles: " + newBottles;
         }

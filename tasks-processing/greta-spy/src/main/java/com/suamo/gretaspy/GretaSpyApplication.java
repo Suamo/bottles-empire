@@ -18,10 +18,24 @@ public class GretaSpyApplication {
         SpringApplication.run(GretaSpyApplication.class, args);
     }
 
-    @StreamListener(Sink.INPUT)
-    public void log(Integer bottlesIncome) {
-        System.out.println("Test logging. Total: " + bottlesIncome + ". ");
-        processor.publishRequest(bottlesIncome);
+//    @StreamListener(Sink.INPUT)
+//    public void log(Integer bottlesIncome) {
+//        System.out.println("Test logging. Total: " + bottlesIncome + ". ");
+//        processor.publishRequest(bottlesIncome);
+//    }
+//
+    @StreamListener(target = Sink.INPUT, condition = "headers['bottlesIncome'] < 10")
+    public void complain(Integer bottlesIncome) {
+        String msg = "Another pack of bottles produced: " + bottlesIncome;
+        System.out.println(msg);
+        processor.publishRequest(msg);
+    }
+
+    @StreamListener(target = Sink.INPUT, condition = "headers['bottlesIncome'] >= 10")
+    public void makeHype(Integer bottlesIncome) {
+        String msg = "AA! So much bottles produced: " + bottlesIncome;
+        System.out.println(msg);
+        processor.publishRequest(msg);
     }
 
 }

@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Bean;
 // Deployer will be used to pull the right task
 @EnableTaskLauncher
 @SpringBootApplication
-public class TaskSinkApplication {
+public class GretaCommitteeCoordinator {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TaskSinkApplication.class, args);
+		SpringApplication.run(GretaCommitteeCoordinator.class, args);
 	}
 
 	@Bean

@@ -21,11 +21,11 @@ public class TaskProcessor {
     @Autowired
     private Source source;
 
-    public void publishRequest(Integer bottlesIncome) {
-        List<String> input = Collections.singletonList("" + bottlesIncome);
+    public void publishRequest(String msg) {
+        List<String> input = Collections.singletonList(msg);
         TaskLaunchRequest request = new TaskLaunchRequest(mavenUrl, input, null, null, null);
 
-        System.out.println("created task request");
+        System.out.println("Mainkg a Greta-committee request");
 
         GenericMessage<TaskLaunchRequest> message = new GenericMessage<>(request);
         this.source.output().send(message);
