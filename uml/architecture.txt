@@ -1,5 +1,4 @@
 @startuml
-left to right direction
 
 !include <cloudinsight/rabbitmq>
 !include <cloudinsight/docker>
@@ -16,9 +15,12 @@ artifact "<$rabbitmq>" as MOM {
 frame services {
     artifact BottlesShop <<Service>>
     artifact PlasticWarehouse <<Service>>
+    artifact BottlesFactory <<Service>>
+}
+
+frame greta-services {
     artifact GretaSpy <<Service>>
     artifact GretaCommitteeCoordinator <<Service>>
-    artifact BottlesFactory <<Service>>
 }
 
 frame tasks {
