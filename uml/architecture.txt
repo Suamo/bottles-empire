@@ -18,14 +18,17 @@ frame services {
     artifact PlasticWarehouse <<Service>>
     artifact GretaSpy <<Service>>
     artifact GretaCommitteeCoordinator <<Service>>
-    artifact GretaCommittee <<Task>>
     artifact BottlesFactory <<Service>>
+}
+
+frame tasks {
+    artifact GretaCommittee <<Task>>
 }
 
 interface HTTP as http1
 interface HTTP as http2
 
-http1 --> BottlesShop
+http1 -[#green,bold]-> BottlesShop
 http2 --> PlasticWarehouse
 GretaCommittee -up-> DB
 BottlesFactory ..> queue1

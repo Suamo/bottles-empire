@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.suamo</groupId>
-		<artifactId>tasks-processing</artifactId>
+		<artifactId>services</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
@@ -21,6 +21,10 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-task</artifactId>
 		</dependency>
 
 	</dependencies>

@@ -36,6 +36,8 @@
         <module>bottles-shop</module>
         <module>plastic-warehouse</module>
         <module>bottles-factory</module>
+        <module>greta-spy</module>
+        <module>greta-committee-coordinator</module>
     </modules>
 
 </project>

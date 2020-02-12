@@ -24,7 +24,7 @@
         <module>config-server</module>
         <module>eureka-server</module>
         <module>services</module>
-        <module>tasks-processing</module>
+        <module>tasks</module>
     </modules>
 
     <dependencies>

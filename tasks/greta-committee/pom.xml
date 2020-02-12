@@ -4,27 +4,29 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.suamo</groupId>
-        <artifactId>bottles-empire</artifactId>
+        <artifactId>tasks-processing</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tasks-processing</artifactId>
+
+    <artifactId>greta-committee</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
 
     <dependencies>
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-task</artifactId>
         </dependency>
 
     </dependencies>
-
-    <modules>
-        <module>greta-spy</module>
-        <module>greta-committee-coordinator</module>
-        <module>greta-committee</module>
-    </modules>
 
 </project>
