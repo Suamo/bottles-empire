@@ -22,6 +22,12 @@ services:
     expose:
       - 5672
 
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - 9411:9411
+
   redis:
     image: redis
     container_name: redis
