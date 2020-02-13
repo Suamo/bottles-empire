@@ -5,6 +5,7 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +21,10 @@ public class BottlesFactoryController {
     private int totalAmountOfPlastic = 0;
 
     @PostMapping("/factory")
-    public String makeBottles(@RequestParam int amount) {
+    public String makeBottles(@RequestParam int amount,
+                              @RequestAttribute("OAuth2AuthenticationDetails.ACCESS_TOKEN_VALUE") String accessToken) {
         totalAmountOfPlastic += amount;
+        System.out.println(accessToken);
         System.out.println("Received plastic: " + amount + ", total now: " + totalAmountOfPlastic);
 
         int newBottles = totalAmountOfPlastic / BOTTLE_PLASTIC_COST;

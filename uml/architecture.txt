@@ -31,10 +31,10 @@ interface HTTP as http1
 interface HTTP as http2
 
 http1 -[#green,bold]-> BottlesShop
-http2 --> PlasticWarehouse
+http2 -[#red,bold]-> PlasticWarehouse
 GretaCommittee -up-> DB
 BottlesFactory ..> queue1
-PlasticWarehouse --> BottlesFactory
+PlasticWarehouse -[#red,bold]-> BottlesFactory
 queue1 .> BottlesShop
 queue1 ..> GretaSpy
 GretaSpy ..> queue2
