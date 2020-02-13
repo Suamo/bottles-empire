@@ -2,7 +2,7 @@ package com.suamo.bottlesfactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
-import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -29,9 +29,9 @@ public class PlasticWarehouseController {
         System.out.println("token: " + token.getValue());
 
         String url = FACTORY_URL + amount;
-        oAuth2RestTemplate.exchange(url, POST, null, RequestEntity.class);
+        ResponseEntity<String> exchange = oAuth2RestTemplate.exchange(url, POST, null, String.class);
 
-        return "Plastic has been stashed. Amount: " + amount;
+        return exchange.getBody();
     }
 
 }

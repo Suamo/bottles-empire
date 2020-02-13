@@ -25,16 +25,18 @@ public class BottlesFactoryController {
                               @RequestAttribute("OAuth2AuthenticationDetails.ACCESS_TOKEN_VALUE") String accessToken) {
         totalAmountOfPlastic += amount;
         System.out.println(accessToken);
-        System.out.println("Received plastic: " + amount + ", total now: " + totalAmountOfPlastic);
+        String msg = "Received plastic: " + amount + ", total now: " + totalAmountOfPlastic + ".";
+
+        System.out.println(msg);
 
         int newBottles = totalAmountOfPlastic / BOTTLE_PLASTIC_COST;
         if (newBottles > 0) {
             System.out.println("Processing " + (BOTTLE_PLASTIC_COST * newBottles) + " plastic for " + newBottles + " bottles.");
             source.output().send(MessageBuilder.withPayload(newBottles).setHeader("bottlesIncome", newBottles).build());
             totalAmountOfPlastic = totalAmountOfPlastic % BOTTLE_PLASTIC_COST;
-            return "Send plastic to bottles factory. Excepted bottles: " + newBottles;
+            return msg + " Sent " + (BOTTLE_PLASTIC_COST * newBottles) + " plastic to bottles factory. Excepted bottles: " + newBottles;
         }
-        return "Received new plastic! Yeeey! Received: " + amount;
+        return msg;
     }
 
 }

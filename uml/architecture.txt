@@ -15,11 +15,11 @@ artifact "<$rabbitmq>" as MOM {
 frame services {
     artifact BottlesShop <<Service>>
     artifact PlasticWarehouse <<Service>>
-    artifact BottlesFactory <<Service>>
+    collections BottlesFactory <<Service>>
 }
 
 frame greta-services {
-    artifact GretaSpy <<Service>>
+    collections GretaSpy <<Service>>
     artifact GretaCommitteeCoordinator <<Service>>
 }
 
