@@ -15,11 +15,11 @@ public class GretaCommitteeApplication {
     }
 
     @Bean
-    public TollProcessingTask tollProcessingTask() {
-        return new TollProcessingTask();
+    public CommitteeTask committee() {
+        return new CommitteeTask();
     }
 
-    public static class TollProcessingTask implements CommandLineRunner {
+    public static class CommitteeTask implements CommandLineRunner {
 
         @Override
         public void run(String... args) {
