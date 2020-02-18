@@ -16,6 +16,7 @@ frame services {
     artifact BottlesShop <<Service>>
     artifact PlasticWarehouse <<Service>>
     collections BottlesFactory <<Service>>
+    note left: self-healing
 }
 
 frame greta-services {

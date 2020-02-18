@@ -21,8 +21,7 @@
     </properties>
 
     <modules>
-        <module>config-server</module>
-        <module>eureka-server</module>
+        <module>tools</module>
         <module>services</module>
         <module>tasks</module>
     </modules>

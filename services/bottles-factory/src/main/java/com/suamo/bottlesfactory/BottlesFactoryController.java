@@ -1,17 +1,22 @@
 package com.suamo.bottlesfactory;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.integration.support.MessageBuilder;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 @EnableBinding(Source.class)
 @RestController
-public class BottlesFactoryController {
+public class BottlesFactoryController extends WebSecurityConfigurerAdapter {
 
     private static final int BOTTLE_PLASTIC_COST = 3;
 
@@ -20,9 +25,12 @@ public class BottlesFactoryController {
 
     private int totalAmountOfPlastic = 0;
 
+    @HystrixCommand(fallbackMethod = "makeBottlesBackup")
     @PostMapping("/factory")
     public String makeBottles(@RequestParam int amount,
                               @RequestAttribute("OAuth2AuthenticationDetails.ACCESS_TOKEN_VALUE") String accessToken) {
+        randomFail();
+
         totalAmountOfPlastic += amount;
         System.out.println(accessToken);
         String msg = "Received plastic: " + amount + ", total now: " + totalAmountOfPlastic + ".";
@@ -39,4 +47,21 @@ public class BottlesFactoryController {
         return msg;
     }
 
+    public String makeBottlesBackup(@RequestParam int amount,
+                                    @RequestAttribute("OAuth2AuthenticationDetails.ACCESS_TOKEN_VALUE") String accessToken,
+                                    Throwable exception) {
+        exception.printStackTrace();
+        return "The factory is not available. Please come back later.";
+    }
+
+    private void randomFail() {
+        if (new Random().nextInt(2) == 1) {
+            throw new RuntimeException("Hello random fail!");
+        }
+    }
+
+    @Override
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers("/actuator/hystrix.stream");
+    }
 }
