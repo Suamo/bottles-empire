@@ -27,10 +27,6 @@
     * @EnableEurekaServer
 * Usage of Eureka server by client app
     * dependency: spring-cloud-starter-netflix-eureka-client
-    
-## Services coordination
-* Synchronous (REST)
-* Asynchronous (RabbitMQ)
 
 ## Securing microservices (Single Sign-On)
 * External authentication (GitHub
@@ -47,7 +43,7 @@
 ## Services coordination
 * Synchronous (REST)
 * Asynchronous (RabbitMQ)
-* Tracing (Sleuth + Zipkin)
+* Latency and dependency tracing (Sleuth + Zipkin)
     * dependency: spring-cloud-starter-zipkin
 
 ## Load balancing:
@@ -71,3 +67,14 @@
     * dependency: mysql-connector-java
     * @EnableTask
     * @Bean CommandLineRunner
+
+## Circuit Breaker
+* Hystrix
+    * dependency: spring-cloud-starter-netflix-hystrix
+    * @EnableCircuitBreaker
+    * @HystrixCommand
+* Hystrix dashboard
+    * dependency: spring-cloud-starter-netflix-hystrix-dashboard
+    * @EnableHystrixDashboard
+    * property: management.endpoints.web.exposure.include
+* Turbine
